@@ -59,3 +59,9 @@ class Menu extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    accessibility: state.accessibility,
+  };
+};
