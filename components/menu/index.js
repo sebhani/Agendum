@@ -66,7 +66,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-onst mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch) => {
   return {
     accessibilityOn: () => {
       dispatch(accessibilityOn());
