@@ -65,3 +65,16 @@ const mapStateToProps = (state) => {
     accessibility: state.accessibility,
   };
 };
+
+onst mapDispatch = (dispatch) => {
+  return {
+    accessibilityOn: () => {
+      dispatch(accessibilityOn());
+    },
+    accessibilityOff: () => {
+      dispatch(accessibilityOff());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatch)(Menu);
