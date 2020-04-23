@@ -6,7 +6,10 @@ import { Alert, Linking } from 'react-native';
 
 async function getCurrentLocation(object) {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
-
+    if (status !== 'granted') {
+        displayErrorAlert();
+        return;
+    }
     const location = await ExpoLocation.getCurrentPositionAsync({});
     object.setState({
         region: {
