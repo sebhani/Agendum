@@ -18,3 +18,11 @@ async function getCurrentLocation(object) {
         }
     }, () => { object.props.updateRegion(object.state.region); });
 }
+
+function displayErrorAlert() {
+    Alert.alert(i18n.t('LOCATION_ALERT_TITLE'),
+        i18n.t('LOCATION_ALERT_MESSAGE'),
+        [
+            { text: i18n.t('LOCATION_ALERT_BUTTON'), onPress: () => { Linking.openURL('app-settings:'); } }
+        ]);
+}
