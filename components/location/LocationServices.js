@@ -4,6 +4,8 @@ import * as Permissions from 'expo-permissions';
 import * as ExpoLocation from 'expo-location';
 import { Alert, Linking } from 'react-native';
 
+/** @param {object} object - Object representing a self reference. Example: getCurrentLocation(this)
+ * Gets the current location of the user after grating permissions **/
 async function getCurrentLocation(object) {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
@@ -19,6 +21,7 @@ async function getCurrentLocation(object) {
     }, () => { object.props.updateRegion(object.state.region); });
 }
 
+/** Method that will be called in the event that the user has their location services disabled */
 function displayErrorAlert() {
     Alert.alert(i18n.t('LOCATION_ALERT_TITLE'),
         i18n.t('LOCATION_ALERT_MESSAGE'),
