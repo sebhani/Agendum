@@ -26,3 +26,5 @@ function displayErrorAlert() {
             { text: i18n.t('LOCATION_ALERT_BUTTON'), onPress: () => { Linking.openURL('app-settings:'); } }
         ]);
 }
+
+export default getCurrentLocation;
