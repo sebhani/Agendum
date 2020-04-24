@@ -58,16 +58,6 @@ export default class TheMap extends Component {
      const currRef = (ref) => { this.mapRef = ref; };
      return (
        <View style={styles.container}>
-         <Overlay
-           isVisible={this.state.isVisible}
-           windowBackgroundColor="rgba(255, 255, 255, .5)"
-           height="20"
-         >
-           <Input
-             placeholder="INPUT WITH ICON"
-           />
-
-         </Overlay>
          <MapView
            showsUserLocation
            followsUserLocation

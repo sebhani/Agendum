@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Overlay, Text, Input } from 'react-native-elements';
+import { View, TouchableOpacity } from 'react-native';
+import {
+  Overlay, Text, Input, Button
+} from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 import TheMap from '../map';
 
@@ -23,6 +25,7 @@ class Home extends Component {
         longitudeDelta: 0.04
       },
       // current concordia bulding tapped on
+      isVisible: true,
       showDirectionsMenu: false,
     };
   }
@@ -131,7 +134,10 @@ class Home extends Component {
           <Input
             placeholder="Enter Event Title"
           />
-          <View style={{ top: 20, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{
+            top: 20, justifyContent: 'center', alignItems: 'center', paddingBottom: 50
+          }}
+          >
             <NumericInput
               styles={{ top: 20 }}
               iconStyle={{ color: 'white' }}
@@ -145,8 +151,19 @@ class Home extends Component {
               onChange={(value) => { return console.log(value); }}
             />
           </View>
+          <View styles={{ top: 90 }}>
+            <TouchableOpacity style={{
+              alignItems: 'center',
+              backgroundColor: '#DDDDDD',
+              padding: 10
+            }}
+            >
+              <Text>Submit</Text>
+            </TouchableOpacity>
+          </View>
         </Overlay>
         <AddButton />
+
       </View>
     );
   }
