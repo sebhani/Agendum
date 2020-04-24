@@ -301,7 +301,9 @@ export default class DashboardScreen extends Component {
         //  >
         //    <Text style={{ color: 'white' }}>{item.name}</Text>
         //  </TouchableOpacity>
-         <View style={{ backgroundColor: '#DC493D', width: '75%', borderRadius: 10 }}>
+         <View style={{ top:10,padding: 10,backgroundColor: '#DC493D', width: '75%', borderRadius: 10,    shadowRadius: 20,
+    shadowOpacity: 0.6,
+    shadowColor: '#812A28', }}>
            <Text style={{ color: 'white' }}>{item.name}</Text>
            <Text style={{ color: 'white' }}>{item.description || '-'}</Text>
            <Text style={{ color: 'white' }}>{item.address}</Text>

@@ -16,7 +16,8 @@ class Menu extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.logo} source={conpass} />
+        {/* <Image style={styles.logo} source={conpass} /> */}
+        <Text style={styles.logo}>Agendum</Text>
         <View style={styles.options}>
           <TouchableOpacity
             onPress={() => {
