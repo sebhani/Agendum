@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { Overlay, Text, Input } from 'react-native-elements';
+import NumericInput from 'react-native-numeric-input';
 import TheMap from '../map';
+
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
 import AddButton from '../addButton';
@@ -119,7 +122,31 @@ class Home extends Component {
         <Location
           updateRegion={this.updateRegion}
         />
-        <AddButton/>
+        <Overlay
+          isVisible={this.state.isVisible}
+          windowBackgroundColor="rgba(255, 255, 255, .5)"
+          height="30%"
+        >
+          <Text h5 style={{ textAlign: 'center', fontSize: 16 }}>Enter the information about your event</Text>
+          <Input
+            placeholder="Enter Event Title"
+            style={{ padding: 10 }}
+          />
+          <NumericInput
+            styles={{ top: 20 }}
+            iconStyle={{ color: 'white' }}
+            rightButtonBackgroundColor="#EA3788"
+            leftButtonBackgroundColor="#E56B70"
+            totalWidth={190}
+            totalHeight={50}
+            iconSize={25}
+            rounded
+            minValue={0}
+            onChange={(value) => { return console.log(value); }}
+          />
+
+        </Overlay>
+        <AddButton />
       </View>
     );
   }
