@@ -130,7 +130,7 @@ class Home extends Component {
           windowBackgroundColor="rgba(255, 255, 255, .5)"
           height="40%"
         >
-          <Text h5 style={{ textAlign: 'center', fontSize: 16 }}>Enter the information about your event</Text>
+          <Text h5 style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>Enter the information about your event</Text>
           <Input
             placeholder="Enter Event Title"
           />
