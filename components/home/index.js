@@ -27,7 +27,7 @@ class Home extends Component {
         longitudeDelta: 0.04
       },
       // current concordia bulding tapped on
-      isVisible: true,
+      isVisible: false,
       showDirectionsMenu: false,
     };
   }
@@ -106,6 +106,10 @@ class Home extends Component {
     });
   }
 
+  setVisibility = () => {
+    this.setState({ isVisible: true });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -140,6 +144,7 @@ class Home extends Component {
             top: 20, justifyContent: 'center', alignItems: 'center', paddingBottom: 50
           }}
           >
+            <Text h5 style={{ fontSize: 16, fontWeight: 'bold' }}>Set radius for notification</Text>
             <NumericInput
               styles={{ top: 20 }}
               iconStyle={{ color: 'white' }}
@@ -158,23 +163,24 @@ class Home extends Component {
               <TouchableOpacity
                 style={styles.touchable}
                 onPress={() => {
-                }}
-              >
-                <Text>Submit</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.touchable}
-                onPress={() => {
                   this.setState({ isVisible: false });
                 }}
               >
                 <Text>Cancel</Text>
               </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => {
+                  
+                }}
+              >
+                <Text>Submit</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Overlay>
-        <AddButton />
+        <AddButton setVisibility={this.setVisibility} />
 
       </View>
     );

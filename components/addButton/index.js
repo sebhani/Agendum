@@ -17,8 +17,7 @@ class addButton extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => {
-        }}
+        <TouchableOpacity style={styles.button} onPress={() => {this.props.setVisibility() }}
         >
           <Ionicons style={{position:'absolute', right: 10,top:0}}name="ios-add" size={40} color="#812A28" />
         </TouchableOpacity>

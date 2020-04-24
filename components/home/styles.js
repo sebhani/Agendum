@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   },
   touchable: {
     alignItems: 'center',
-    backgroundColor: 'rgba(156,211,215,0.95)',
+    backgroundColor: '#DC493D',
+    color: '#812A28',
     width: '50%',
     height: '270%',
     bottom: 45,
