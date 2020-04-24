@@ -6,7 +6,7 @@ import {
 import NumericInput from 'react-native-numeric-input';
 import i18n from 'i18n-js';
 import TheMap from '../map';
-
+import DatePicker from 'react-native-datepicker';
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
 
@@ -157,6 +157,32 @@ class Home extends Component {
               minValue={0}
               onChange={(value) => { return console.log(value); }}
             />
+          </View>
+          <View>
+            <DatePicker
+        style={{width: 200}}
+        date={this.state.date}
+        mode="date"
+        placeholder="select date"
+        format="YYYY-MM-DD"
+        minDate="2016-05-01"
+        maxDate="2021-06-01"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        customStyles={{
+          dateIcon: {
+            position: 'absolute',
+            left: 0,
+            top: 4,
+            marginLeft: 0
+          },
+          dateInput: {
+            marginLeft: 36
+          }
+          // ... You can check the source to find the other keys.
+        }}
+        onDateChange={(date) => {this.setState({date: date})}}
+      />
           </View>
           <View>
             <View style={{ flexDirection: 'row', position: 'absolute', top: 90 }}>
