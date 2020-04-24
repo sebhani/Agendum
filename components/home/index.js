@@ -130,9 +130,8 @@ class Home extends Component {
           <Text h5 style={{ textAlign: 'center', fontSize: 16 }}>Enter the information about your event</Text>
           <Input
             placeholder="Enter Event Title"
-            style={{ padding: 10 }}
           />
-          <View style={{ top: 20 }}>
+          <View style={{ top: 20, justifyContent: 'center', alignItems: 'center' }}>
             <NumericInput
               styles={{ top: 20 }}
               iconStyle={{ color: 'white' }}
