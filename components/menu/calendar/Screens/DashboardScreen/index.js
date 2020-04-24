@@ -301,10 +301,10 @@ export default class DashboardScreen extends Component {
         //  >
         //    <Text style={{ color: 'white' }}>{item.name}</Text>
         //  </TouchableOpacity>
-         <View style={{backgroundColor:'#DC493D', width:'75%', borderRadius: 10}}>
-           <Text style={{color:'white'}}>{item.name}</Text>
-           <Text style={{color:'white'}}>{item.description || '-'}</Text>
-           <Text style={{color:'white'}}>{item.address}</Text>
+         <View style={{ backgroundColor: '#DC493D', width: '75%', borderRadius: 10 }}>
+           <Text style={{ color: 'white' }}>{item.name}</Text>
+           <Text style={{ color: 'white' }}>{item.description || '-'}</Text>
+           <Text style={{ color: 'white' }}>{item.address}</Text>
          </View>
        );
      }
