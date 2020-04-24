@@ -13,7 +13,6 @@ export default class TheMap extends Component {
     super(props);
     this.mapRef = null;
     this.onRegionChange = this.onRegionChange.bind(this);
-    this.selectPoi = this.selectPoi.bind(this);
   }
 
   /**
@@ -38,29 +37,6 @@ export default class TheMap extends Component {
   }
 
 
-  /** Send the selected point of interest to the parent component */
-  async selectPoi(poi) {
-    const id = poi.nativeEvent.placeId;
-    const key = 'AIzaSyCqNODizSqMIWbKbO8Iq3VWdBcK846n_3w';
-    const geoUrl = `https://maps.googleapis.com/maps/api/place/details/json?key=${key}&placeid=${id}`;
-    if (id) {
-      try {
-        const georesult = await fetch(geoUrl);
-        const gjson = await georesult.json();
-        const address = gjson.result.formatted_address;
-        const { name } = gjson.result;
-        const locations = gjson.result.geometry.location;
-        this.props.getDestinationIfSet(`${name}, ${address}`);
-        this.props.updateRegionCloser({
-          latitude: locations ? locations.lat : 45.492409,
-          longitude: locations ? locations.lng : -73.582153,
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  }
-
   // do not put conponents that dont belong to react-native-maps API inside the MapView
   render() {
     const currRef = (ref) => { this.mapRef = ref; };
@@ -75,8 +51,13 @@ export default class TheMap extends Component {
           region={this.props.updatedRegion}
           onRegionChange={this.onRegionChange}
           style={styles.mapStyle}
-          onPoiClick={this.selectPoi}
-        />
+        >
+                            <MapView.Marker
+                    
+                    coordinate={{latitude: this.props.updatedRegion.latitude, longitude: this.props.updatedRegion.longitude}}
+
+                  />
+        </MapView>
       </View>
     );
   }
