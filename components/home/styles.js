@@ -10,6 +10,14 @@ const styles = StyleSheet.create({
   button: {
     position: 'absolute',
     bottom: 30,
+  },
+  touchable: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(156,211,215,0.95)',
+    width: '50%',
+    height: '270%',
+    bottom: 45,
+    justifyContent: 'center',
   }
 });
 

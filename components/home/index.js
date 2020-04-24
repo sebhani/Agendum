@@ -4,10 +4,12 @@ import {
   Overlay, Text, Input, Button
 } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
+import i18n from 'i18n-js';
 import TheMap from '../map';
 
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
+
 import AddButton from '../addButton';
 import styles from './styles';
 
@@ -151,15 +153,26 @@ class Home extends Component {
               onChange={(value) => { return console.log(value); }}
             />
           </View>
-          <View styles={{ top: 90 }}>
-            <TouchableOpacity style={{
-              alignItems: 'center',
-              backgroundColor: '#DDDDDD',
-              padding: 10
-            }}
-            >
-              <Text>Submit</Text>
-            </TouchableOpacity>
+          <View>
+            <View style={{ flexDirection: 'row', position: 'absolute' }}>
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => {
+                  firebase.auth().signOut();
+                }}
+              >
+                <Text>Submit</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => {
+                  this.setState({ isVisible: false });
+                }}
+              >
+                <Text>Cancel</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Overlay>
         <AddButton />
