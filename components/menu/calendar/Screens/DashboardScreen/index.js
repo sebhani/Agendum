@@ -265,6 +265,16 @@ export default class DashboardScreen extends Component {
            }
          );
        });
+
+       if(AsyncStorage.getItem('urEvents')){
+       const urEvents=AsyncStorage.getItem('urEvents');
+       tempArray.push({
+         date: urEvents.date,
+         title: urEvents.textTitle,
+         address:urEvents.location
+       });
+       }
+
        if (this._isMounted) {
          this.setState({
            synchronizedEvents: this.tempArray

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, AsyncStorage } from 'react-native';
 import {
   Overlay, Text, Input, Button
 } from 'react-native-elements';
@@ -127,6 +127,8 @@ class Home extends Component {
       location: this.state.location
     };
     this.state.events.push(element);
+    const {urEvents} = this.state.events;
+    AsyncStorage.setItem('urEvent', urEvents);
     console.log(this.state.events);
   }
 
