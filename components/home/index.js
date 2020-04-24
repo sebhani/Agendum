@@ -132,19 +132,20 @@ class Home extends Component {
             placeholder="Enter Event Title"
             style={{ padding: 10 }}
           />
-          <NumericInput
-            styles={{ top: 20 }}
-            iconStyle={{ color: 'white' }}
-            rightButtonBackgroundColor="#EA3788"
-            leftButtonBackgroundColor="#E56B70"
-            totalWidth={190}
-            totalHeight={50}
-            iconSize={25}
-            rounded
-            minValue={0}
-            onChange={(value) => { return console.log(value); }}
-          />
-
+          <View style={{ top: 20 }}>
+            <NumericInput
+              styles={{ top: 20 }}
+              iconStyle={{ color: 'white' }}
+              rightButtonBackgroundColor="#EA3788"
+              leftButtonBackgroundColor="#E56B70"
+              totalWidth={190}
+              totalHeight={50}
+              iconSize={25}
+              rounded
+              minValue={0}
+              onChange={(value) => { return console.log(value); }}
+            />
+          </View>
         </Overlay>
         <AddButton />
       </View>
