@@ -160,29 +160,31 @@ class Home extends Component {
           </View>
           <View>
             <DatePicker
-        style={{width: 200}}
-        date={this.state.date}
-        mode="date"
-        placeholder="select date"
-        format="YYYY-MM-DD"
-        minDate="2016-05-01"
-        maxDate="2021-06-01"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          },
-          dateInput: {
-            marginLeft: 36
-          }
-          // ... You can check the source to find the other keys.
-        }}
-        onDateChange={(date) => {this.setState({date: date})}}
-      />
+              iosMode
+              style={{ width: 300}}
+              date={this.state.date}
+              mode="datetime"
+              placeholder="select date"
+              format="YYYY-MM-DD"
+              minDate={new Date()}
+              maxDate="2021-01-01"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                datePickerCon:{backgroundColor:'black'},
+                dateIcon: {
+                  position: 'absolute',
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36,
+                },
+                // ... You can check the source to find the other keys.
+              }}
+              onDateChange={(date) => { this.setState({ date: date })}}
+            />
           </View>
           <View>
             <View style={{ flexDirection: 'row', position: 'absolute', top: 90 }}>
