@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import TheMap from '../map';
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
+import AddButton from '../addButton';
 import styles from './styles';
 
 
@@ -118,6 +119,7 @@ class Home extends Component {
         <Location
           updateRegion={this.updateRegion}
         />
+        <AddButton/>
       </View>
     );
   }
