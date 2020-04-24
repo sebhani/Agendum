@@ -282,25 +282,30 @@ export default class DashboardScreen extends Component {
        const { address } = item;
        const { description } = item;
        return (
-         <TouchableOpacity
-           style={[styles.item, { height: item.height }]}
-           onPress={() => {
-             return Alert.alert(item.name,
-               `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
-               [
-                 { text: i18n.t('cancel') },
-                 {
-                   text: i18n.t('getDirections'),
-                   onPress: () => {
-                     if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
-                   }
-                 },
-               ],
-               { cancelable: false });
-           }}
-         >
-           <Text style={{ color: 'white' }}>{item.name}</Text>
-         </TouchableOpacity>
+        //  <TouchableOpacity
+        //    style={[styles.item, { height: item.height }]}
+        //    onPress={() => {
+        //      return Alert.alert(item.name,
+        //        `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
+        //        [
+        //          { text: i18n.t('cancel') },
+        //          {
+        //            text: i18n.t('getDirections'),
+        //            onPress: () => {
+        //              if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
+        //            }
+        //          },
+        //        ],
+        //        { cancelable: false });
+        //    }}
+        //  >
+        //    <Text style={{ color: 'white' }}>{item.name}</Text>
+        //  </TouchableOpacity>
+         <View style={{backgroundColor:'#DC493D', width:'75%', borderRadius: 10}}>
+           <Text style={{color:'white'}}>{item.name}</Text>
+           <Text style={{color:'white'}}>{item.description || '-'}</Text>
+           <Text style={{color:'white'}}>{item.address}</Text>
+         </View>
        );
      }
 
@@ -347,10 +352,10 @@ export default class DashboardScreen extends Component {
             }}
             theme={{
               calendarBackground: 'rgb(255,255,255)',
-              selectedDayBackgroundColor: 'rgba(156,211,215,1)',
+              selectedDayBackgroundColor: '#812A28',
               agendaDayTextColor: 'black',
               agendaDayNumColor: 'black',
-              agendaKnobColor: 'rgba(156,211,215,1)'
+              agendaKnobColor: '#812A28'
             }}
           />
           <View>
@@ -361,7 +366,7 @@ export default class DashboardScreen extends Component {
                   firebase.auth().signOut();
                 }}
               >
-                <Text>{i18n.t('logOut')}</Text>
+                <Text style={{color:'white'}}>{i18n.t('logOut')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -370,7 +375,7 @@ export default class DashboardScreen extends Component {
                   this.showDialog(true);
                 }}
               >
-                <Text>{i18n.t('adjustTime')}</Text>
+                <Text style={{color:'white'}}>{i18n.t('adjustTime')}</Text>
               </TouchableOpacity>
             </View>
           </View>
