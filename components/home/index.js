@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, AsyncStorage } from 'react-native';
 import {
-  Overlay, Text, Input, Button
+  Text, Input, Button
 } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 import i18n from 'i18n-js';
 import DatePicker from 'react-native-datepicker';
+import Overlay from 'react-native-modal-overlay';
 import TheMap from '../map';
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
@@ -33,7 +34,7 @@ class Home extends Component {
       textTitle: '',
       date: '',
       events: [],
-      buttonVisible:false
+      buttonVisible: false
     };
   }
 
@@ -112,7 +113,7 @@ class Home extends Component {
   }
 
   getDestination = (location) => {
-    this.setState({location, buttonVisible: true});
+    this.setState({ location, buttonVisible: true });
   }
 
   setVisibility = () => {
@@ -127,7 +128,7 @@ class Home extends Component {
       location: this.state.location
     };
     this.state.events.push(element);
-    const {urEvents} = this.state.events;
+    const { urEvents } = this.state.events;
     AsyncStorage.setItem('urEvent', urEvents);
     console.log(this.state.events);
   }
@@ -154,12 +155,19 @@ class Home extends Component {
         <Location
           updateRegion={this.updateRegion}
         />
-        <Overlay
-          isVisible={this.state.isVisible}
-          windowBackgroundColor="rgba(255, 255, 255, .5)"
-          height="55%"
+        {this.state.isVisible && (
+        <View style={{
+          position: 'absolute', height: 430, width: 320, padding: 20, borderRadius: 10, backgroundColor: 'white'
+        }}
         >
-          <Text h5 style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold', marginBottom: 8 }}>Enter the information about your event</Text>
+          <Text
+            h5
+            style={{
+              textAlign: 'center', fontSize: 16, fontWeight: 'bold', marginBottom: 8
+            }}
+          >
+            Enter the information about your event
+          </Text>
           <Input
             placeholder="Enter Event Title"
             onChangeText={(text) => { this.setState({ textTitle: text }); }}
@@ -168,7 +176,11 @@ class Home extends Component {
             top: 20, justifyContent: 'center', alignItems: 'center', paddingBottom: 50
           }}
           >
-          <Text style={{marginBottom:6}}>Location: {this.state.location}</Text>
+            <Text style={{ marginBottom: 6 }}>
+              Location:
+              {' '}
+              {this.state.location}
+            </Text>
             <Text h5 style={{ fontSize: 16, fontWeight: 'bold' }}>Set radius for notification</Text>
             <NumericInput
               styles={{ top: 20 }}
@@ -186,7 +198,7 @@ class Home extends Component {
           <View>
             <DatePicker
               iosMode
-              style={{ width: 300 }}
+              style={{ width: 280 }}
               date={this.state.date}
               mode="date"
               placeholder="select date"
@@ -204,14 +216,14 @@ class Home extends Component {
                   marginLeft: 0
                 },
                 dateInput: {
-                  marginLeft: 36,
+                  marginLeft: 30,
                 },
                 // ... You can check the source to find the other keys.
               }}
               onDateChange={(date) => { this.setState({ date }); }}
             />
           </View>
-          <Text style={{marginTop:6}}>you can check this event in the calendar</Text>
+          <Text style={{ marginTop: 6 }}>you can check this event in the calendar</Text>
           <View>
             <View style={{ flexDirection: 'row', position: 'absolute', top: 90 }}>
               <TouchableOpacity
@@ -234,8 +246,9 @@ class Home extends Component {
               </TouchableOpacity>
             </View>
           </View>
-        </Overlay>
-        {this.state.buttonVisible&&(<AddButton setVisibility={this.setVisibility} />)}
+        </View>
+        ) }
+        {this.state.buttonVisible && (<AddButton setVisibility={this.setVisibility} />)}
 
       </View>
     );
