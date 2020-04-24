@@ -5,8 +5,8 @@ import {
 } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 import i18n from 'i18n-js';
-import TheMap from '../map';
 import DatePicker from 'react-native-datepicker';
+import TheMap from '../map';
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
 
@@ -29,6 +29,10 @@ class Home extends Component {
       // current concordia bulding tapped on
       isVisible: false,
       showDirectionsMenu: false,
+      radius: 0,
+      textTitle: '',
+      date: '',
+      events: []
     };
   }
 
@@ -110,6 +114,16 @@ class Home extends Component {
     this.setState({ isVisible: true });
   }
 
+  formatarray =() => {
+    const element = {
+      textTitle: this.state.textTitle,
+      radius: this.state.radius,
+      date: this.state.date,
+    };
+    this.state.events.push(element);
+    console.log(this.state.events);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -139,6 +153,7 @@ class Home extends Component {
           <Text h5 style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>Enter the information about your event</Text>
           <Input
             placeholder="Enter Event Title"
+            onChangeText={(text) => { this.setState({ textTitle: text }); }}
           />
           <View style={{
             top: 20, justifyContent: 'center', alignItems: 'center', paddingBottom: 50
@@ -155,13 +170,13 @@ class Home extends Component {
               iconSize={25}
               rounded
               minValue={0}
-              onChange={(value) => { return console.log(value); }}
+              onChange={(radius) => { this.setState({ radius }); }}
             />
           </View>
           <View>
             <DatePicker
               iosMode
-              style={{ width: 300}}
+              style={{ width: 300 }}
               date={this.state.date}
               mode="datetime"
               placeholder="select date"
@@ -171,7 +186,7 @@ class Home extends Component {
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={{
-                datePickerCon:{backgroundColor:'black'},
+                datePickerCon: { backgroundColor: 'black' },
                 dateIcon: {
                   position: 'absolute',
                   left: 0,
@@ -183,7 +198,7 @@ class Home extends Component {
                 },
                 // ... You can check the source to find the other keys.
               }}
-              onDateChange={(date) => { this.setState({ date: date })}}
+              onDateChange={(date) => { this.setState({ date }); }}
             />
           </View>
           <View>
@@ -200,7 +215,7 @@ class Home extends Component {
               <TouchableOpacity
                 style={styles.touchable}
                 onPress={() => {
-                  
+                  this.formatarray();
                 }}
               >
                 <Text>Submit</Text>
