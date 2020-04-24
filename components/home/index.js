@@ -125,7 +125,7 @@ class Home extends Component {
         <Overlay
           isVisible={this.state.isVisible}
           windowBackgroundColor="rgba(255, 255, 255, .5)"
-          height="30%"
+          height="40%"
         >
           <Text h5 style={{ textAlign: 'center', fontSize: 16 }}>Enter the information about your event</Text>
           <Input
@@ -138,7 +138,7 @@ class Home extends Component {
               rightButtonBackgroundColor="#EA3788"
               leftButtonBackgroundColor="#E56B70"
               totalWidth={190}
-              totalHeight={50}
+              totalHeight={45}
               iconSize={25}
               rounded
               minValue={0}
