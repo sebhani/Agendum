@@ -154,11 +154,10 @@ class Home extends Component {
             />
           </View>
           <View>
-            <View style={{ flexDirection: 'row', position: 'absolute' }}>
+            <View style={{ flexDirection: 'row', position: 'absolute', top: 90 }}>
               <TouchableOpacity
                 style={styles.touchable}
                 onPress={() => {
-                  firebase.auth().signOut();
                 }}
               >
                 <Text>Submit</Text>
