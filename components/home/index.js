@@ -32,7 +32,8 @@ class Home extends Component {
       radius: 0,
       textTitle: '',
       date: '',
-      events: []
+      events: [],
+      buttonVisible:false
     };
   }
 
@@ -110,6 +111,10 @@ class Home extends Component {
     });
   }
 
+  getDestination = (location) => {
+    this.setState({location, buttonVisible: true});
+  }
+
   setVisibility = () => {
     this.setState({ isVisible: true });
   }
@@ -119,6 +124,7 @@ class Home extends Component {
       textTitle: this.state.textTitle,
       radius: this.state.radius,
       date: this.state.date,
+      location: this.state.location
     };
     this.state.events.push(element);
     console.log(this.state.events);
@@ -140,6 +146,7 @@ class Home extends Component {
           navigation={this.props.navigation}
           updateRegion={this.updateRegion}
           changeVisibilityTo={this.changeVisibilityTo}
+          getDestination={this.getDestination}
         />
         )}
         <Location
@@ -148,9 +155,9 @@ class Home extends Component {
         <Overlay
           isVisible={this.state.isVisible}
           windowBackgroundColor="rgba(255, 255, 255, .5)"
-          height="40%"
+          height="55%"
         >
-          <Text h5 style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>Enter the information about your event</Text>
+          <Text h5 style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold', marginBottom: 8 }}>Enter the information about your event</Text>
           <Input
             placeholder="Enter Event Title"
             onChangeText={(text) => { this.setState({ textTitle: text }); }}
@@ -159,6 +166,7 @@ class Home extends Component {
             top: 20, justifyContent: 'center', alignItems: 'center', paddingBottom: 50
           }}
           >
+          <Text style={{marginBottom:6}}>Location: {this.state.location}</Text>
             <Text h5 style={{ fontSize: 16, fontWeight: 'bold' }}>Set radius for notification</Text>
             <NumericInput
               styles={{ top: 20 }}
@@ -178,7 +186,7 @@ class Home extends Component {
               iosMode
               style={{ width: 300 }}
               date={this.state.date}
-              mode="datetime"
+              mode="date"
               placeholder="select date"
               format="YYYY-MM-DD"
               minDate={new Date()}
@@ -201,21 +209,23 @@ class Home extends Component {
               onDateChange={(date) => { this.setState({ date }); }}
             />
           </View>
+          <Text style={{marginTop:6}}>you can check this event in the calendar</Text>
           <View>
             <View style={{ flexDirection: 'row', position: 'absolute', top: 90 }}>
               <TouchableOpacity
-                style={styles.touchable}
+                style={styles.touchable1}
                 onPress={() => {
-                  this.setState({ isVisible: false });
+                  this.setState({ isVisible: false, buttonVisible: false });
                 }}
               >
                 <Text>Cancel</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={styles.touchable}
+                style={styles.touchable2}
                 onPress={() => {
                   this.formatarray();
+                  this.setState({ isVisible: false, buttonVisible: false });
                 }}
               >
                 <Text>Submit</Text>
@@ -223,7 +233,7 @@ class Home extends Component {
             </View>
           </View>
         </Overlay>
-        <AddButton setVisibility={this.setVisibility} />
+        {this.state.buttonVisible&&(<AddButton setVisibility={this.setVisibility} />)}
 
       </View>
     );

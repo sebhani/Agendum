@@ -195,8 +195,8 @@ export class MapSearchBar extends Component {
                 showPredictions: false
               });
               this.getLatLong(prediction.place_id);
-              if (this.props.getDestinationIfSet) {
-                this.props.getDestinationIfSet(prediction.description);
+              if (this.props.getDestination) {
+                this.props.getDestination(prediction.description);
               }
               Keyboard.dismiss();
             }}

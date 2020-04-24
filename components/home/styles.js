@@ -11,12 +11,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
   },
-  touchable: {
+  touchable1: {
     alignItems: 'center',
     backgroundColor: '#DC493D',
     color: '#812A28',
     width: '50%',
     height: '270%',
+    borderRadius: 10,
+    marginRight: 1,
+    bottom: 45,
+    justifyContent: 'center',
+  },
+    touchable2: {
+    alignItems: 'center',
+    backgroundColor: '#DC493D',
+    color: '#812A28',
+    width: '50%',
+    height: '270%',
+    borderRadius: 10,
+    marginLeft: 1,
     bottom: 45,
     justifyContent: 'center',
   }
