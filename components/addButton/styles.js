@@ -1,17 +1,19 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-
+//
   container: {
-    bottom: 60,
-    right: 20,
+    bottom: 70,
+    right: 11,
     zIndex: 221,
     position: 'absolute',
   },
   button: {
     zIndex: 221,
     borderWidth: 3,
-    borderRadius: 50,
+    borderRadius: 40,
+    height:48,
+    width:48,
     borderColor: '#812A28',
     padding: 5,
     backgroundColor: '#DC493D'

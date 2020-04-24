@@ -20,7 +20,7 @@ class addButton extends Component {
         <TouchableOpacity style={styles.button} onPress={() => {
         }}
         >
-          <Ionicons name="ios-add" size={42} color="#812A28" />
+          <Ionicons style={{position:'absolute', right: 10,top:0}}name="ios-add" size={40} color="#812A28" />
         </TouchableOpacity>
       </View>
     );
