@@ -65,10 +65,9 @@ export default class TheMap extends Component {
    render() {
     if(this.state.eventsInfo!=null){
         var eventsFocus = this.state.eventsInfo.map((event) => {
-        console.log('--> ',this.state.eventsInfo);
         return (
           <Circle
-            key={event.textTitle}
+            key={event.textTitle+event.location}
             center={{latitude: event.latitude,longitude: event.longitude}}
             radius={event.radius*1000}
             fillColor="rgba(255,135,135,0.5)"

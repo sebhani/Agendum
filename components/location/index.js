@@ -19,11 +19,9 @@ export default class Location extends Component {
     let eventsInsideCircle = [];
     const evnts = await AsyncStorage.getItem('urEvent');
     const events = JSON.parse(evnts);
-    console.log('here! ',events);
+
     if(evnts !=null && userCurrentLocation!=null){
-      console.log('inside the if', events);
       events.forEach(event => {
-        console.log('xyEE');
         this.isWithinCircle(userCurrentLocation, {lat: event.latitude, lng: event.longitude}, event.radius);
       });
     }
