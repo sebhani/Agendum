@@ -21,17 +21,22 @@ export default class Location extends Component {
     const events = JSON.parse(evnts);
     console.log('here! ',events);
     if(evnts !=null && userCurrentLocation!=null){
-      console.log('inside the if');
+      console.log('inside the if', events);
       events.forEach(event => {
-        this.isWithinCircle(event.radius, [event.latitude, event.longitude], userCurrentLocation);
+        console.log('xyEE');
+        this.isWithinCircle(userCurrentLocation, {lat: event.latitude, lng: event.longitude}, event.radius);
       });
     }
   }
 
-  isWithinCircle = (radius, circleCenter, userCurrentLocation) =>{
-    const radiusToPowerOfTwo = pow(radius,2);
-    const dToPowerOfTwo = pow((userCurrentLocation[0] - circleCenter[0]),2) + pow((userCurrentLocation[1] - circleCenter[1]),2);
-    return (dToPowerOfTwo <= radiusToPowerOfTwo);
+
+  isWithinCircle = (checkPoint, centerPoint, km) =>{
+    var ky = 40000 / 360;
+    var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
+    var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
+    var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
+    console.log(Math.sqrt(dx * dx + dy * dy) <= km);
+    return Math.sqrt(dx * dx + dy * dy) <= km;
   }
 
   render() {
