@@ -130,9 +130,12 @@ class Home extends Component {
       longitude: this.state.presetRegion.longitude
     };
     this.state.events.push(element);
-    const urEvents = this.state.events;
-    await AsyncStorage.setItem('urEvent', JSON.stringify(urEvents));
+    let urEvents = this.state.events;
     const myStore = await AsyncStorage.getItem('urEvent');
+    if(myStore!=null)
+      urEvents = [...JSON.parse(myStore),...this.state.events];
+
+    await AsyncStorage.setItem('urEvent', JSON.stringify(urEvents));
   }
 
   render() {
