@@ -61,10 +61,10 @@ export default class DashboardScreen extends Component {
     const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
     if (status !== 'granted') {
       Alert.alert(i18n.t('permissionNotGranted'),
-    i18n.t('allowNotifications'),
-    [
-      { text: 'ok' }
-    ]);
+        i18n.t('allowNotifications'),
+        [
+          { text: 'ok' }
+        ]);
     }
   }
 
@@ -266,14 +266,12 @@ export default class DashboardScreen extends Component {
          );
        });
 
-       if(AsyncStorage.getItem('urEvents')){
-       const urEvents=AsyncStorage.getItem('urEvents');
-       tempArray.push({
-         date: urEvents.date,
-         title: urEvents.textTitle,
-         address:urEvents.location
-       });
+       console.log(tempArray);
+       if (AsyncStorage.getItem('urEvent')) {
+         const urEvents = AsyncStorage.getItem('urEvent');
+         console.log(JSON.parse(urEvents));
        }
+
 
        if (this._isMounted) {
          this.setState({
@@ -292,28 +290,36 @@ export default class DashboardScreen extends Component {
        const { address } = item;
        const { description } = item;
        return (
-        //  <TouchableOpacity
-        //    style={[styles.item, { height: item.height }]}
-        //    onPress={() => {
-        //      return Alert.alert(item.name,
-        //        `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
-        //        [
-        //          { text: i18n.t('cancel') },
-        //          {
-        //            text: i18n.t('getDirections'),
-        //            onPress: () => {
-        //              if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
-        //            }
-        //          },
-        //        ],
-        //        { cancelable: false });
-        //    }}
-        //  >
-        //    <Text style={{ color: 'white' }}>{item.name}</Text>
-        //  </TouchableOpacity>
-         <View style={{ top:10,padding: 10,backgroundColor: '#DC493D', width: '75%', borderRadius: 10,    shadowRadius: 20,
-    shadowOpacity: 0.6,
-    shadowColor: '#812A28', }}>
+       //  <TouchableOpacity
+       //    style={[styles.item, { height: item.height }]}
+       //    onPress={() => {
+       //      return Alert.alert(item.name,
+       //        `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
+       //        [
+       //          { text: i18n.t('cancel') },
+       //          {
+       //            text: i18n.t('getDirections'),
+       //            onPress: () => {
+       //              if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
+       //            }
+       //          },
+       //        ],
+       //        { cancelable: false });
+       //    }}
+       //  >
+       //    <Text style={{ color: 'white' }}>{item.name}</Text>
+       //  </TouchableOpacity>
+         <View style={{
+           top: 10,
+           padding: 10,
+           backgroundColor: '#DC493D',
+           width: '75%',
+           borderRadius: 10,
+           shadowRadius: 20,
+           shadowOpacity: 0.6,
+           shadowColor: '#812A28',
+         }}
+         >
            <Text style={{ color: 'white' }}>{item.name}</Text>
            <Text style={{ color: 'white' }}>{item.description || '-'}</Text>
            <Text style={{ color: 'white' }}>{item.address}</Text>
@@ -378,7 +384,7 @@ export default class DashboardScreen extends Component {
                   firebase.auth().signOut();
                 }}
               >
-                <Text style={{color:'white'}}>{i18n.t('logOut')}</Text>
+                <Text style={{ color: 'white' }}>{i18n.t('logOut')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -387,7 +393,7 @@ export default class DashboardScreen extends Component {
                   this.showDialog(true);
                 }}
               >
-                <Text style={{color:'white'}}>{i18n.t('adjustTime')}</Text>
+                <Text style={{ color: 'white' }}>{i18n.t('adjustTime')}</Text>
               </TouchableOpacity>
             </View>
           </View>

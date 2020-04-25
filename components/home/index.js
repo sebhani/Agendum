@@ -120,7 +120,7 @@ class Home extends Component {
     this.setState({ isVisible: true });
   }
 
-  formatarray =() => {
+  async formatarray() {
     const element = {
       textTitle: this.state.textTitle,
       radius: this.state.radius,
@@ -128,9 +128,10 @@ class Home extends Component {
       location: this.state.location
     };
     this.state.events.push(element);
-    const { urEvents } = this.state.events;
-    AsyncStorage.setItem('urEvent', urEvents);
-    console.log(this.state.events);
+    const urEvents = this.state.events;
+    await AsyncStorage.setItem('urEvent', JSON.stringify(urEvents));
+    const myStore = await AsyncStorage.getItem('urEvent');
+    console.log(JSON.parse(myStore));
   }
 
   render() {

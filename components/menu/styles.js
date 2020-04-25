@@ -13,11 +13,9 @@ const styles = StyleSheet.create({
     left: 10,
     resizeMode: 'contain',
     position: 'absolute',
-    color:'#191BA9',
+    color: 'green',
     fontSize: 40,
     fontWeight: 'bold',
-    borderWidth: 5,
-    borderRadius: 20,
     borderColor: '#191BA9',
   },
   options: {
