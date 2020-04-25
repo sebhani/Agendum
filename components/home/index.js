@@ -120,7 +120,7 @@ class Home extends Component {
     this.setState({ isVisible: true });
   }
 
-  formatarray =() => {
+  async formatarray() {
     const element = {
       textTitle: this.state.textTitle,
       radius: this.state.radius,
@@ -130,8 +130,9 @@ class Home extends Component {
       longitude: this.state.presetRegion.longitude
     };
     this.state.events.push(element);
-    const urEvents = JSON.stringify(this.state.events);
-    AsyncStorage.setItem('urEvent', urEvents);
+    const urEvents = this.state.events;
+    await AsyncStorage.setItem('urEvent', JSON.stringify(urEvents));
+    const myStore = await AsyncStorage.getItem('urEvent');
   }
 
   render() {

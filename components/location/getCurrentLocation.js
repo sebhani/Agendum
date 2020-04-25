@@ -19,6 +19,7 @@ async function getCurrentLocation(object) {
       longitude: location.coords.longitude,
     }
   }, () => { object.props.updateRegion(object.state.region); });
+  return [location.coords.latitude, location.coords.longitude];
 }
 
 /** Method that will be called in the event that the user has their location services disabled */

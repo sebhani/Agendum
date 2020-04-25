@@ -33,10 +33,12 @@ export default class DashboardScreen extends Component {
       notifyEvents: this.notify(props.navigation.state.params.events),
       pushNotficationToken: '',
       timeToNotify: 1,
-      synchronizedEvents:
-        this.structureSynchronizedEvents(props.navigation.state.params.events.items)
+      myEvent: this.getData(),
+      eventos: '',
+      synchronizedEvents: this.structureSynchronizedEvents(this.props.navigation.state.params.events.items),
     };
   }
+
 
   async componentDidMount() {
     this.registerForPushNotificationsAsync();
@@ -54,6 +56,12 @@ export default class DashboardScreen extends Component {
     this._isMounted = false;
   }
 
+  async getData() {
+    const myEvent = await AsyncStorage.getItem('urEvent');
+    const evento = JSON.parse(myEvent);
+    this.setState({ eventos: evento });
+  }
+
   /**
    * Registers device to receive push notifications
    */
@@ -61,10 +69,10 @@ export default class DashboardScreen extends Component {
     const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
     if (status !== 'granted') {
       Alert.alert(i18n.t('permissionNotGranted'),
-    i18n.t('allowNotifications'),
-    [
-      { text: 'ok' }
-    ]);
+        i18n.t('allowNotifications'),
+        [
+          { text: 'ok' }
+        ]);
     }
   }
 
@@ -252,6 +260,8 @@ export default class DashboardScreen extends Component {
      * Structures all the events the user has
      */
      structureSynchronizedEvents(events) {
+       console.log(this.state.eventos);
+
        const tempArray = [];
        events.forEach((event) => {
          tempArray.push(
@@ -265,16 +275,6 @@ export default class DashboardScreen extends Component {
            }
          );
        });
-
-       if(AsyncStorage.getItem('urEvents')){
-       const urEvents=AsyncStorage.getItem('urEvents');
-       tempArray.push({
-         date: urEvents.date,
-         title: urEvents.textTitle,
-         address:urEvents.location
-       });
-       }
-
        if (this._isMounted) {
          this.setState({
            synchronizedEvents: this.tempArray
@@ -292,28 +292,36 @@ export default class DashboardScreen extends Component {
        const { address } = item;
        const { description } = item;
        return (
-        //  <TouchableOpacity
-        //    style={[styles.item, { height: item.height }]}
-        //    onPress={() => {
-        //      return Alert.alert(item.name,
-        //        `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
-        //        [
-        //          { text: i18n.t('cancel') },
-        //          {
-        //            text: i18n.t('getDirections'),
-        //            onPress: () => {
-        //              if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
-        //            }
-        //          },
-        //        ],
-        //        { cancelable: false });
-        //    }}
-        //  >
-        //    <Text style={{ color: 'white' }}>{item.name}</Text>
-        //  </TouchableOpacity>
-         <View style={{ top:10,padding: 10,backgroundColor: '#DC493D', width: '75%', borderRadius: 10,    shadowRadius: 20,
-    shadowOpacity: 0.6,
-    shadowColor: '#812A28', }}>
+       //  <TouchableOpacity
+       //    style={[styles.item, { height: item.height }]}
+       //    onPress={() => {
+       //      return Alert.alert(item.name,
+       //        `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
+       //        [
+       //          { text: i18n.t('cancel') },
+       //          {
+       //            text: i18n.t('getDirections'),
+       //            onPress: () => {
+       //              if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
+       //            }
+       //          },
+       //        ],
+       //        { cancelable: false });
+       //    }}
+       //  >
+       //    <Text style={{ color: 'white' }}>{item.name}</Text>
+       //  </TouchableOpacity>
+         <View style={{
+           top: 10,
+           padding: 10,
+           backgroundColor: '#DC493D',
+           width: '75%',
+           borderRadius: 10,
+           shadowRadius: 20,
+           shadowOpacity: 0.6,
+           shadowColor: '#812A28',
+         }}
+         >
            <Text style={{ color: 'white' }}>{item.name}</Text>
            <Text style={{ color: 'white' }}>{item.description || '-'}</Text>
            <Text style={{ color: 'white' }}>{item.address}</Text>
@@ -378,7 +386,7 @@ export default class DashboardScreen extends Component {
                   firebase.auth().signOut();
                 }}
               >
-                <Text style={{color:'white'}}>{i18n.t('logOut')}</Text>
+                <Text style={{ color: 'white' }}>{i18n.t('logOut')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -387,7 +395,7 @@ export default class DashboardScreen extends Component {
                   this.showDialog(true);
                 }}
               >
-                <Text style={{color:'white'}}>{i18n.t('adjustTime')}</Text>
+                <Text style={{ color: 'white' }}>{i18n.t('adjustTime')}</Text>
               </TouchableOpacity>
             </View>
           </View>
