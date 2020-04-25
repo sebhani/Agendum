@@ -33,10 +33,12 @@ export default class DashboardScreen extends Component {
       notifyEvents: this.notify(props.navigation.state.params.events),
       pushNotficationToken: '',
       timeToNotify: 1,
-      synchronizedEvents:
-        this.structureSynchronizedEvents(props.navigation.state.params.events.items)
+      myEvent: this.getData(),
+      eventos: '',
+      synchronizedEvents: this.structureSynchronizedEvents(this.props.navigation.state.params.events.items),
     };
   }
+
 
   async componentDidMount() {
     this.registerForPushNotificationsAsync();
@@ -52,6 +54,12 @@ export default class DashboardScreen extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+  }
+
+  async getData() {
+    const myEvent = await AsyncStorage.getItem('urEvent');
+    const evento = JSON.parse(myEvent);
+    this.setState({ eventos: evento });
   }
 
   /**
@@ -252,6 +260,8 @@ export default class DashboardScreen extends Component {
      * Structures all the events the user has
      */
      structureSynchronizedEvents(events) {
+       console.log(this.state.eventos);
+
        const tempArray = [];
        events.forEach((event) => {
          tempArray.push(
@@ -265,14 +275,6 @@ export default class DashboardScreen extends Component {
            }
          );
        });
-
-       console.log(tempArray);
-       if (AsyncStorage.getItem('urEvent')) {
-         const urEvents = AsyncStorage.getItem('urEvent');
-         console.log(JSON.parse(urEvents));
-       }
-
-
        if (this._isMounted) {
          this.setState({
            synchronizedEvents: this.tempArray

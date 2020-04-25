@@ -131,7 +131,6 @@ class Home extends Component {
     const urEvents = this.state.events;
     await AsyncStorage.setItem('urEvent', JSON.stringify(urEvents));
     const myStore = await AsyncStorage.getItem('urEvent');
-    console.log(JSON.parse(myStore));
   }
 
   render() {
