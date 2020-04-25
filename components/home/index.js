@@ -125,7 +125,9 @@ class Home extends Component {
       textTitle: this.state.textTitle,
       radius: this.state.radius,
       date: this.state.date,
-      location: this.state.location
+      location: this.state.location,
+      latitude: this.state.presetRegion.latitude,
+      longitude: this.state.presetRegion.longitude
     };
     this.state.events.push(element);
     const { urEvents } = this.state.events;
