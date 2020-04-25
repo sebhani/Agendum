@@ -6,7 +6,6 @@ import { Overlay, Input } from 'react-native-elements';
 import i18n from 'i18n-js';
 
 import styles from './styles';
-import CustomCircle from './customCircle';
 
 
 export default class TheMap extends Component {
@@ -35,7 +34,7 @@ export default class TheMap extends Component {
     }
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     const eventsJSON = await AsyncStorage.getItem('urEvent');
     this.setState({
       eventsInfo: JSON.parse(eventsJSON)
@@ -63,19 +62,19 @@ export default class TheMap extends Component {
 
    // do not put conponents that dont belong to react-native-maps API inside the MapView
    render() {
-    if(this.state.eventsInfo!=null){
-        var eventsFocus = this.state.eventsInfo.map((event) => {
-        return (
-          <Circle
-            key={event.textTitle+event.location}
-            center={{latitude: event.latitude,longitude: event.longitude}}
-            radius={event.radius*1000}
-            fillColor="rgba(255,135,135,0.5)"
-            strokeWidth={1}
-          />
-        );
-      });
-    }
+     if (this.state.eventsInfo != null) {
+       var eventsFocus = this.state.eventsInfo.map((event) => {
+         return (
+           <Circle
+             key={event.textTitle + event.location}
+             center={{ latitude: event.latitude, longitude: event.longitude }}
+             radius={event.radius * 1000}
+             fillColor="rgba(255,135,135,0.5)"
+             strokeWidth={1}
+           />
+         );
+       });
+     }
 
      const currRef = (ref) => { this.mapRef = ref; };
      return (
@@ -90,7 +89,7 @@ export default class TheMap extends Component {
            onRegionChange={this.onRegionChange}
            style={styles.mapStyle}
          >
-          {eventsFocus}
+           {eventsFocus}
            <MapView.Marker
              coordinate={{ latitude: this.props.updatedRegion.latitude, longitude: this.props.updatedRegion.longitude }}
            />

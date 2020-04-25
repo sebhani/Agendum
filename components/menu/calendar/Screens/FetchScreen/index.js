@@ -40,10 +40,12 @@ export default class FetchScreen extends Component {
    */
   asyncStorageChecker = async () => {
     const evnts = await AsyncStorage.getItem('events');
+    const myEvent = await AsyncStorage.getItem('urEvent');
     const events = JSON.parse(evnts);
+    const myevents = JSON.parse(myEvent);
 
     if (evnts !== null) {
-      this.props.navigation.navigate('DashboardScreen', { events });
+      this.props.navigation.navigate('DashboardScreen', { events, myevents });
     } else {
       firebase.auth().signOut();
     }

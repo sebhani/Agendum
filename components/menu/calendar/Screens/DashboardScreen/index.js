@@ -29,12 +29,11 @@ export default class DashboardScreen extends Component {
     super(props);
     this.state = {
       items: {},
+      // myEvent: this.getData(),
       isDialogVisible: false,
       notifyEvents: this.notify(props.navigation.state.params.events),
       pushNotficationToken: '',
       timeToNotify: 1,
-      myEvent: this.getData(),
-      eventos: '',
       synchronizedEvents: this.structureSynchronizedEvents(this.props.navigation.state.params.events.items),
     };
   }
@@ -56,11 +55,11 @@ export default class DashboardScreen extends Component {
     this._isMounted = false;
   }
 
-  async getData() {
-    const myEvent = await AsyncStorage.getItem('urEvent');
-    const evento = JSON.parse(myEvent);
-    this.setState({ eventos: evento });
-  }
+  // async getData() {
+  //   const myEvent = await AsyncStorage.getItem('urEvent');
+  //   const evento = JSON.parse(myEvent);
+  //   return evento;
+  // }
 
   /**
    * Registers device to receive push notifications
@@ -260,8 +259,8 @@ export default class DashboardScreen extends Component {
      * Structures all the events the user has
      */
      structureSynchronizedEvents(events) {
-       console.log(this.state.eventos);
-
+       const { myevents } = this.props.navigation.state.params;
+       console.log(myevents);
        const tempArray = [];
        events.forEach((event) => {
          tempArray.push(
@@ -274,6 +273,14 @@ export default class DashboardScreen extends Component {
              address: event.location != null ? event.location : ''
            }
          );
+       });
+
+       myevents.forEach((event) => {
+         tempArray.push({
+           date: event.date != null ? event.date : '',
+           title: event.textTitle != null ? event.textTitle : '',
+           address: event.location != null ? event.location : ''
+         });
        });
        if (this._isMounted) {
          this.setState({
