@@ -62,8 +62,14 @@ export default class TheMap extends Component {
 
    // do not put conponents that dont belong to react-native-maps API inside the MapView
    render() {
-     if (this.props.eventsArr != null) {
-       var eventsFocus = this.props.eventsArr.map((event) => {
+      {
+      let eventsArray = [];
+      if(this.props.eventsArr != null)
+        eventsArray = this.props.eventsArr;
+      else if(this.state.eventsInfo != null)
+        eventsArray = this.state.eventsInfo;
+
+       var eventsFocus = eventsArray.map((event) => {
          return (
            <Circle
              key={event.textTitle + event.location}
