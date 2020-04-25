@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { View, Text, AsyncStorage } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Circle } from 'react-native-maps';
 import { Overlay, Input } from 'react-native-elements';
 
 import i18n from 'i18n-js';
 
 import styles from './styles';
+import CustomCircle from './customCircle';
 
 
 export default class TheMap extends Component {
@@ -18,7 +19,7 @@ export default class TheMap extends Component {
     this.mapRef = null;
     this.onRegionChange = this.onRegionChange.bind(this);
     this.state = {
-      isVisible: false
+      isVisible: false,
     };
   }
 
@@ -32,6 +33,13 @@ export default class TheMap extends Component {
     if (prevProps.updatedCoordinates !== coordinates) {
       this.fitScreenToPath(coordinates);
     }
+  }
+
+  async componentDidMount(){
+    const eventsJSON = await AsyncStorage.getItem('urEvent');
+    this.setState({
+      eventsInfo: JSON.parse(eventsJSON)
+    });
   }
 
   /**
@@ -55,6 +63,21 @@ export default class TheMap extends Component {
 
    // do not put conponents that dont belong to react-native-maps API inside the MapView
    render() {
+    if(this.state.eventsInfo!=null){
+        var eventsFocus = this.state.eventsInfo.map((event) => {
+        console.log('--> ',this.state.eventsInfo);
+        return (
+          <Circle
+            key={event.textTitle}
+            center={{latitude: event.latitude,longitude: event.longitude}}
+            radius={event.radius*1000}
+            fillColor="rgba(255,135,135,0.5)"
+            strokeWidth={1}
+          />
+        );
+      });
+    }
+
      const currRef = (ref) => { this.mapRef = ref; };
      return (
        <View style={styles.container}>
@@ -68,6 +91,7 @@ export default class TheMap extends Component {
            onRegionChange={this.onRegionChange}
            style={styles.mapStyle}
          >
+          {eventsFocus}
            <MapView.Marker
              coordinate={{ latitude: this.props.updatedRegion.latitude, longitude: this.props.updatedRegion.longitude }}
            />
