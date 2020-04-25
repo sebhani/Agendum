@@ -274,14 +274,15 @@ export default class DashboardScreen extends Component {
            }
          );
        });
-
-       myevents.forEach((event) => {
-         tempArray.push({
-           date: event.date != null ? event.date : '',
-           title: event.textTitle != null ? event.textTitle : '',
-           address: event.location != null ? event.location : ''
+       if (myevents) {
+         myevents.forEach((event) => {
+           tempArray.push({
+             date: event.date != null ? event.date : '',
+             title: event.textTitle != null ? event.textTitle : '',
+             address: event.location != null ? event.location : ''
+           });
          });
-       });
+       }
        if (this._isMounted) {
          this.setState({
            synchronizedEvents: this.tempArray
