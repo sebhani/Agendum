@@ -43,6 +43,7 @@ export default class TheMap extends Component {
     }
   }
 
+
   /**
    *
    * @param {*} newRegion - region to update to on map
