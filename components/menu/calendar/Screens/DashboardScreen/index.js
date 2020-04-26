@@ -260,7 +260,6 @@ export default class DashboardScreen extends Component {
      */
      structureSynchronizedEvents(events) {
        const { myevents } = this.props.navigation.state.params;
-       console.log(myevents);
        const tempArray = [];
        events.forEach((event) => {
          tempArray.push(
@@ -300,23 +299,23 @@ export default class DashboardScreen extends Component {
        const { address } = item;
        const { description } = item;
        return (
+
          <TouchableOpacity
            onPress={() => {
              return Alert.alert(item.name,
-               `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
+               `\n${item.address}`,
                [
                  { text: i18n.t('cancel') },
                  {
-                   text: i18n.t('getDirections'),
+                   text: 'Delete event',
                    onPress: () => {
-                     if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
+                     deleteItem(item.title);
                    }
                  },
                ],
                { cancelable: false });
            }}
          >
-           <Text style={{ color: 'white' }}>{item.name}</Text>
            <View style={{
              top: 10,
              padding: 10,
@@ -331,7 +330,6 @@ export default class DashboardScreen extends Component {
              <Text style={{ color: 'white' }}>{item.name}</Text>
            </View>
          </TouchableOpacity>
-
        );
      }
 
@@ -398,10 +396,11 @@ export default class DashboardScreen extends Component {
               <TouchableOpacity
                 style={styles.touchable}
                 onPress={() => {
-                  this.showDialog(true);
+                  AsyncStorage.removeItem('urEvent');
+                  this.props.navigation.navigate('HomeScreen');
                 }}
               >
-                <Text style={{ color: 'white' }}>{i18n.t('adjustTime')}</Text>
+                <Text style={{ color: 'white' }}>Clear Location Reminders</Text>
               </TouchableOpacity>
             </View>
           </View>

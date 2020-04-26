@@ -22,6 +22,15 @@ export default class TheMap extends Component {
     };
   }
 
+
+  async componentDidMount() {
+    const eventsJSON = await AsyncStorage.getItem('urEvent');
+    this.setState({
+      eventsInfo: JSON.parse(eventsJSON)
+    });
+  }
+
+
   /**
    *
    * @param {*} prevProps - props from previous state
@@ -34,13 +43,6 @@ export default class TheMap extends Component {
     }
   }
 
-  async componentDidMount() {
-    
-    const eventsJSON = await AsyncStorage.getItem('urEvent');
-    this.setState({
-      eventsInfo: JSON.parse(eventsJSON)
-    });
-  }
 
   /**
    *
@@ -63,12 +65,9 @@ export default class TheMap extends Component {
 
    // do not put conponents that dont belong to react-native-maps API inside the MapView
    render() {
-      {
-      let eventsArray = [];
-      if(this.props.eventsArr != null)
-        eventsArray = this.props.eventsArr;
-      else if(this.state.eventsInfo != null)
-        eventsArray = this.state.eventsInfo;
+     {
+       let eventsArray = [];
+       if (this.props.eventsArr != null) { eventsArray = this.props.eventsArr; } else if (this.state.eventsInfo != null) { eventsArray = this.state.eventsInfo; }
 
        var eventsFocus = eventsArray.map((event) => {
          return (

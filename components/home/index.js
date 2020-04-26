@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, AsyncStorage, TextInput } from 'react-native';
 import {
-  Text, Input, Button
+  Text, Input,
 } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 import { Dropdown } from 'react-native-material-dropdown';
 import i18n from 'i18n-js';
 import DatePicker from 'react-native-datepicker';
-import Overlay from 'react-native-modal-overlay';
 import TheMap from '../map';
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
@@ -42,7 +41,8 @@ class Home extends Component {
 
   componentDidMount() {
     if (this.props.navigation.state) {
-      this.getCalDirections();
+      console.log('ay');
+      this.setState({ eventsArr: '' });
     }
   }
 
@@ -136,10 +136,9 @@ class Home extends Component {
     this.state.events.push(element);
     let urEvents = this.state.events;
     const myStore = await AsyncStorage.getItem('urEvent');
-    if(myStore!=null)
-      urEvents = [...JSON.parse(myStore),...this.state.events];
+    if (myStore != null) { urEvents = [...JSON.parse(myStore), ...this.state.events]; }
 
-    this.setState({eventsArr:urEvents});
+    this.setState({ eventsArr: urEvents });
     await AsyncStorage.setItem('urEvent', JSON.stringify(urEvents));
   }
 
@@ -152,7 +151,7 @@ class Home extends Component {
           updatedRegion={this.state.presetRegion}
           getDestinationIfSet={this.getDestinationIfSet}
           updateRegionCloser={this.updateRegionCloser}
-          eventsArr={this.state.eventsArr?this.state.eventsArr:null}
+          eventsArr={this.state.eventsArr ? this.state.eventsArr : null}
         />
         {!this.state.showDirectionsMenu && (
         <MapSearchBar
