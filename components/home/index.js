@@ -132,10 +132,9 @@ class Home extends Component {
     this.state.events.push(element);
     let urEvents = this.state.events;
     const myStore = await AsyncStorage.getItem('urEvent');
-    if(myStore!=null)
-      urEvents = [...JSON.parse(myStore),...this.state.events];
+    if (myStore != null) { urEvents = [...JSON.parse(myStore), ...this.state.events]; }
 
-    this.setState({eventsArr:urEvents});
+    this.setState({ eventsArr: urEvents });
     await AsyncStorage.setItem('urEvent', JSON.stringify(urEvents));
   }
 
@@ -148,7 +147,7 @@ class Home extends Component {
           updatedRegion={this.state.presetRegion}
           getDestinationIfSet={this.getDestinationIfSet}
           updateRegionCloser={this.updateRegionCloser}
-          eventsArr={this.state.eventsArr?this.state.eventsArr:null}
+          eventsArr={this.state.eventsArr ? this.state.eventsArr : null}
         />
         {!this.state.showDirectionsMenu && (
         <MapSearchBar

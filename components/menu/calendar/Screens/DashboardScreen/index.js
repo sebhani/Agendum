@@ -303,20 +303,19 @@ export default class DashboardScreen extends Component {
          <TouchableOpacity
            onPress={() => {
              return Alert.alert(item.name,
-               `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
+               `\n${item.address}`,
                [
                  { text: i18n.t('cancel') },
                  {
-                   text: i18n.t('getDirections'),
+                   text: 'Delete event',
                    onPress: () => {
-                     if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
+
                    }
                  },
                ],
                { cancelable: false });
            }}
          >
-           <Text style={{ color: 'white' }}>{item.name}</Text>
            <View style={{
              top: 10,
              padding: 10,
@@ -331,7 +330,6 @@ export default class DashboardScreen extends Component {
              <Text style={{ color: 'white' }}>{item.name}</Text>
            </View>
          </TouchableOpacity>
-
        );
      }
 
