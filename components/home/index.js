@@ -195,7 +195,7 @@ class Home extends Component {
             <View style={{borderColor: 'black'}}>
             <View style={{borderWidth:1, borderColor:'black',borderRadius:5,padding:10,right: '10%'}}>
             <TextInput
-              placeholder = "0 km"
+              placeholder = "0"
               keyboardType={'numeric'}
               onChangeText={(radius) => { this.setState({ radius }); }}
             />
