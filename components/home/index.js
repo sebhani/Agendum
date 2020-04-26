@@ -38,11 +38,13 @@ class Home extends Component {
 
   componentDidMount() {
     if (this.props.navigation.state) {
-      console.log('ay');
       this.setState({ eventsArr: '' });
     }
   }
 
+  componentDidUpdate() {
+    console.log('ay');
+  }
 
   /**
    * gets new region from 'OutdoorDirections' component and updates region state

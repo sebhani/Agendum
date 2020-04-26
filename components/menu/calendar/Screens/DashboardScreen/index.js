@@ -305,13 +305,7 @@ export default class DashboardScreen extends Component {
              return Alert.alert(item.name,
                `\n${item.address}`,
                [
-                 { text: i18n.t('cancel') },
-                 {
-                   text: 'Delete event',
-                   onPress: () => {
-                     deleteItem(item.title);
-                   }
-                 },
+                 { text: i18n.t('cancel') }
                ],
                { cancelable: false });
            }}
