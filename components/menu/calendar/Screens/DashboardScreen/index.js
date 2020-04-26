@@ -260,7 +260,6 @@ export default class DashboardScreen extends Component {
      */
      structureSynchronizedEvents(events) {
        const { myevents } = this.props.navigation.state.params;
-       console.log(myevents);
        const tempArray = [];
        events.forEach((event) => {
          tempArray.push(
@@ -300,6 +299,7 @@ export default class DashboardScreen extends Component {
        const { address } = item;
        const { description } = item;
        return (
+
          <TouchableOpacity
            onPress={() => {
              return Alert.alert(item.name,
@@ -309,7 +309,7 @@ export default class DashboardScreen extends Component {
                  {
                    text: 'Delete event',
                    onPress: () => {
-
+                     deleteItem(item.title);
                    }
                  },
                ],
@@ -396,10 +396,11 @@ export default class DashboardScreen extends Component {
               <TouchableOpacity
                 style={styles.touchable}
                 onPress={() => {
-                  this.showDialog(true);
+                  AsyncStorage.removeItem('urEvent');
+                  this.props.navigation.navigate('HomeScreen');
                 }}
               >
-                <Text style={{ color: 'white' }}>{i18n.t('adjustTime')}</Text>
+                <Text style={{ color: 'white' }}>Clear Location Reminders</Text>
               </TouchableOpacity>
             </View>
           </View>

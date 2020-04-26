@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, AsyncStorage } from 'react-native';
 import {
-  Text, Input, Button
+  Text, Input,
 } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
-import i18n from 'i18n-js';
 import DatePicker from 'react-native-datepicker';
-import Overlay from 'react-native-modal-overlay';
 import TheMap from '../map';
 import MapSearchBar from '../mapSearchBar';
 import Location from '../location';
@@ -40,7 +38,8 @@ class Home extends Component {
 
   componentDidMount() {
     if (this.props.navigation.state) {
-      this.getCalDirections();
+      console.log('ay');
+      this.setState({ eventsArr: '' });
     }
   }
 
