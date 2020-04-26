@@ -35,6 +35,7 @@ export default class TheMap extends Component {
   }
 
   async componentDidMount() {
+    
     const eventsJSON = await AsyncStorage.getItem('urEvent');
     this.setState({
       eventsInfo: JSON.parse(eventsJSON)

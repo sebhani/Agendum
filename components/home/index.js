@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, AsyncStorage } from 'react-native';
+import { View, TouchableOpacity, AsyncStorage, TextInput } from 'react-native';
 import {
   Text, Input, Button
 } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
+import { Dropdown } from 'react-native-material-dropdown';
 import i18n from 'i18n-js';
 import DatePicker from 'react-native-datepicker';
 import Overlay from 'react-native-modal-overlay';
@@ -27,6 +28,7 @@ class Home extends Component {
         latitudeDelta: 0.04,
         longitudeDelta: 0.04
       },
+      unit:'km',
       // current concordia bulding tapped on
       isVisible: false,
       showDirectionsMenu: false,
@@ -121,9 +123,11 @@ class Home extends Component {
   }
 
   async formatarray() {
+    let r = this.state.radius;
+    if (this.state.unit === 'm') { r = this.state.radius / 1000; }
     const element = {
       textTitle: this.state.textTitle,
-      radius: this.state.radius,
+      radius: r,
       date: this.state.date,
       location: this.state.location,
       latitude: this.state.presetRegion.latitude,
@@ -189,23 +193,28 @@ class Home extends Component {
               {this.state.location}
             </Text>
             <Text h5 style={{ fontSize: 16, fontWeight: 'bold' }}>Set radius for notification</Text>
-            <NumericInput
-              styles={{ top: 20 }}
-              iconStyle={{ color: 'white' }}
-              rightButtonBackgroundColor="#EA3788"
-              leftButtonBackgroundColor="#E56B70"
-              totalWidth={190}
-              totalHeight={45}
-              iconSize={25}
-              rounded
-              minValue={0}
-              onChange={(radius) => { this.setState({ radius }); }}
+            <View style={{borderColor: 'black'}}>
+            <View style={{borderWidth:1, borderColor:'black',borderRadius:5,padding:10,right: '10%'}}>
+            <TextInput
+              placeholder = "0 km"
+              keyboardType={'numeric'}
+              onChangeText={(radius) => { this.setState({ radius }); }}
             />
+            </View>
+            <View style={{width: 50, top: '-60%', left: '10%'}}>
+            <Dropdown
+              style={{width: 10}}
+              value={this.state.unit}
+              data={[{value:'km'},{value: 'm'}]}
+              onChangeText={ (unit) => {this.setState({unit}); }}
+            />
+            </View>
+            </View>
           </View>
           <View>
             <DatePicker
               iosMode
-              style={{ width: 280 }}
+              style={{ width: 280, bottom:'180%' }}
               date={this.state.date}
               mode="date"
               placeholder="select date"
@@ -230,9 +239,9 @@ class Home extends Component {
               onDateChange={(date) => { this.setState({ date }); }}
             />
           </View>
-          <Text style={{ marginTop: 6 }}>you can check this event in the calendar</Text>
+          <Text style={{ marginTop: 6, bottom: '15%' }}>you can check this event in the calendar</Text>
           <View>
-            <View style={{ flexDirection: 'row', position: 'absolute', top: 90 }}>
+            <View style={{flexDirection: 'row', position: 'absolute', top: '90%' }}>
               <TouchableOpacity
                 style={styles.touchable1}
                 onPress={() => {
