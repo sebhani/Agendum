@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux';
 import i18n from 'i18n-js';
 import styles from './styles';
-import conpass from '../../assets/icons/conpass.png';
+import conpass from '../../assets/icons/splashScreen.png';
 import { accessibilityOn, accessibilityOff } from '../../store/actions';
 
 class Menu extends Component {

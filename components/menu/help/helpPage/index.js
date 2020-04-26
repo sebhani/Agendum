@@ -15,14 +15,11 @@ export default class HelpPage extends Component {
         <View style = {styles.pageHeader} >
             <Text style = {{fontSize: 35}} > Topics </Text>
         </View>
-        <HelpTemplate title = "Guide to CONPASS">
-          <Text>{HelpInformation.Guide} </Text>
+        <HelpTemplate title = "Create a new task">
+          <Text>{HelpInformation.createANewTask} </Text>
       </HelpTemplate>
-      <HelpTemplate title = "Accessibility Option  ">
-          <Text>{HelpInformation.Accesibility} </Text>
-      </HelpTemplate>
-      <HelpTemplate title = "Concordia Shuttle">
-          <Text>{HelpInformation.ShuttleService} </Text>
+      <HelpTemplate title = "Calendar">
+          <Text>{HelpInformation.Calendar} </Text>
       </HelpTemplate>
       </View>
     );

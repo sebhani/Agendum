@@ -7,6 +7,7 @@ import i18n from 'i18n-js';
 import * as Google from 'expo-google-app-auth';
 import firebase from 'firebase';
 import styles from './styles';
+import icon from '../../../../../assets/icons/hugo-logged-out.png';
 
 
 export default class LoginScreen extends Component {
@@ -132,6 +133,10 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          style={{ width: 200, height: 200 }} 
+          source={require('../../../../../assets/icons/hugo-logged-out.png')}
+        />
         <TouchableOpacity
           onPress={() => { this.signInWithGoogleAsync(); }}
         >

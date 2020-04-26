@@ -11,6 +11,7 @@ import store from './store';
 import HelpPage from './components/menu/help/helpPage';
 
 const Stack = createStackNavigator();
+console.disableYellowBox = true;
 export default class App extends Component {
   render() {
     return (
@@ -18,7 +19,6 @@ export default class App extends Component {
         forceInset={{ top: 'always' }}
         style={{ backgroundColor: '#212121', flex: 1 }}
       >
-
         <Provider store={store}>
           <NavigationContainer>
             <Stack.Navigator

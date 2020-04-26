@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, AsyncStorage, TextInput } from 'react-native';
+import { Keyboard, View, TouchableOpacity, AsyncStorage, TextInput } from 'react-native';
 import {
   Text, Input,
 } from 'react-native-elements';
@@ -199,7 +199,7 @@ class Home extends Component {
             <TextInput
               placeholder = "0"
               keyboardType={'numeric'}
-              onChangeText={(radius) => { this.setState({ radius }); }}
+              onChangeText={(radius) => { this.setState({ radius });}}
             />
             </View>
             <View style={{width: 50, top: '-60%', left: '10%'}}>
@@ -207,7 +207,7 @@ class Home extends Component {
               style={{width: 10}}
               value={this.state.unit}
               data={[{value:'km'},{value: 'm'}]}
-              onChangeText={ (unit) => {this.setState({unit}); }}
+              onChangeText={ (unit) => {this.setState({unit});}}
             />
             </View>
             </View>

@@ -1,6 +1,5 @@
 const HelpInformation = {
-    Guide: ['Conpass has made navigation easy for everyone. All you have to do is input your starting and ending location and hit start! We fully support indoor navigation too allowing you to find any class or room easily. If you would like to use this feature (inside a campus building), simply double tap your desired travel building'],
-    Accesibility: ['Conpass has complete support for individuals with accessibility requirements. To activate this feature, select accessibility from the main left hand menu and toggle on. This will select a customized route for those that need it!'],
-    ShuttleService: ['Conpass provides a complete schedule of the Concordia Shuttle service for students always on the go! Simply select Shuttle Bus Schedule on our Menu and then select the campus you are on. Loyola or SGW. Easy!']
+    createANewTask: ['To create a new task, first search for a location in the search bar, a plus button will appear in the bottom right corner of the page. After you press teh button, a pop-up form will appear fill it and submit.'],
+    Calendar: ['You can visualize you tasks in the calendar. To do that, press on the burger menu icon. When the side menu appears, press on it and a login screen will appear. After you fill your information, your tasks will appear in the calendar'],
 };
 export default HelpInformation;

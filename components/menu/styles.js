@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
     left: 10,
     resizeMode: 'contain',
     position: 'absolute',
-    color: 'green',
+    color: '#66AADD',
     fontSize: 40,
     fontWeight: 'bold',
-    borderColor: '#191BA9',
+    borderColor: '#66AADD',
   },
   options: {
     position: 'absolute',

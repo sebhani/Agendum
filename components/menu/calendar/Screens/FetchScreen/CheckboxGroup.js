@@ -138,7 +138,8 @@ render() {
                 style={{
                   marginTop: 24,
                   padding: 30,
-                  backgroundColor: this.state.calendarsToSync.includes(item.storageId) ? '#EEB462' : 'rgba(156,211,215,0.95)',
+                  color: 'white',
+                  backgroundColor: this.state.calendarsToSync.includes(item.storageId) ? '#DC493D' : '#812A28',
                   fontSize: 24,
                   overflow: 'hidden',
                   borderRadius: 10
