@@ -1,7 +1,7 @@
 
 /* eslint-disable no-plusplus */
 import React, { Component } from 'react';
-import { View, Image, AsyncStorage } from 'react-native';
+import { View, Image, AsyncStorage, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import getCurrentLocation from './getCurrentLocation';
 import styles from './styles';
@@ -20,20 +20,28 @@ export default class Location extends Component {
     let eventsInsideCircle = [];
     const evnts = await AsyncStorage.getItem('urEvent');
     const events = JSON.parse(evnts);
-    
+
     const soundObject = new Audio.Sound();
-    try {
-      await soundObject.loadAsync(require('./alarm.mp3'));
-      await soundObject.playAsync();
-      // Your sound is playing!
-    } catch (error) {
-      // An error occurred!
-      console.log('error occurred!');
-    }
+
     if(evnts !=null && userCurrentLocation!=null){
       events.forEach(event => {
-        this.isWithinCircle(userCurrentLocation, {lat: event.latitude, lng: event.longitude}, event.radius);
+        if(this.isWithinCircle(userCurrentLocation, {lat: event.latitude, lng: event.longitude}, event.radius)){
+          eventsInsideCircle.push(event.textTitle);
+        }
       });
+    }
+
+    if(eventsInsideCircle.length > 0){
+      try {
+        await soundObject.loadAsync(require('./alarm.mp3'));
+        await soundObject.playAsync();
+        // Your sound is playing!
+      } catch (error) {
+        // An error occurred!
+        console.log(error);
+      }
+
+      Alert.alert(`The following events have occurred: ${eventsInsideCircle.join()}`);
     }
   }
 
