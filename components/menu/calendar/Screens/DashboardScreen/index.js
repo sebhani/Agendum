@@ -274,14 +274,15 @@ export default class DashboardScreen extends Component {
            }
          );
        });
-
-       myevents.forEach((event) => {
-         tempArray.push({
-           date: event.date != null ? event.date : '',
-           title: event.textTitle != null ? event.textTitle : '',
-           address: event.location != null ? event.location : ''
+       if (myevents) {
+         myevents.forEach((event) => {
+           tempArray.push({
+             date: event.date != null ? event.date : '',
+             title: event.textTitle != null ? event.textTitle : '',
+             address: event.location != null ? event.location : ''
+           });
          });
-       });
+       }
        if (this._isMounted) {
          this.setState({
            synchronizedEvents: this.tempArray
@@ -299,40 +300,38 @@ export default class DashboardScreen extends Component {
        const { address } = item;
        const { description } = item;
        return (
-       //  <TouchableOpacity
-       //    style={[styles.item, { height: item.height }]}
-       //    onPress={() => {
-       //      return Alert.alert(item.name,
-       //        `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
-       //        [
-       //          { text: i18n.t('cancel') },
-       //          {
-       //            text: i18n.t('getDirections'),
-       //            onPress: () => {
-       //              if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
-       //            }
-       //          },
-       //        ],
-       //        { cancelable: false });
-       //    }}
-       //  >
-       //    <Text style={{ color: 'white' }}>{item.name}</Text>
-       //  </TouchableOpacity>
-         <View style={{
-           top: 10,
-           padding: 10,
-           backgroundColor: '#DC493D',
-           width: '75%',
-           borderRadius: 10,
-           shadowRadius: 20,
-           shadowOpacity: 0.6,
-           shadowColor: '#812A28',
-         }}
+         <TouchableOpacity
+           onPress={() => {
+             return Alert.alert(item.name,
+               `${item.startTime}  -  ${item.endTime}\n${item.description}\n${item.address}`,
+               [
+                 { text: i18n.t('cancel') },
+                 {
+                   text: i18n.t('getDirections'),
+                   onPress: () => {
+                     if (address) { this.sendDirections(address.split(',')[0]); } else { this.sendDirections(description.split('\n')[0]); }
+                   }
+                 },
+               ],
+               { cancelable: false });
+           }}
          >
            <Text style={{ color: 'white' }}>{item.name}</Text>
-           <Text style={{ color: 'white' }}>{item.description || '-'}</Text>
-           <Text style={{ color: 'white' }}>{item.address}</Text>
-         </View>
+           <View style={{
+             top: 10,
+             padding: 10,
+             backgroundColor: '#DC493D',
+             width: '75%',
+             borderRadius: 10,
+             shadowRadius: 20,
+             shadowOpacity: 0.6,
+             shadowColor: '#812A28',
+           }}
+           >
+             <Text style={{ color: 'white' }}>{item.name}</Text>
+           </View>
+         </TouchableOpacity>
+
        );
      }
 
