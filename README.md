@@ -1,4 +1,10 @@
 # Agendum
+Agendum is a React-native mobile application project for User Interface Design course (SOEN 357) at Concordia University.
+The purpose of this application is to provide location-based reminders to whoever needs them in order to get notified once based on specific radius.
+
+Link to project teaser:
+https://youtu.be/cHVYr-r9F4A
+
 
 ## Setting up
 1. Clone the repository
