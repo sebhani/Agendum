@@ -9,10 +9,14 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 200,
-    top: 0,
+    top: 80,
     left: 10,
     resizeMode: 'contain',
     position: 'absolute',
+    color: '#66AADD',
+    fontSize: 40,
+    fontWeight: 'bold',
+    borderColor: '#66AADD',
   },
   options: {
     position: 'absolute',
